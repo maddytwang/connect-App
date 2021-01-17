@@ -27,13 +27,13 @@ class WelcomeViewController: UIViewController {
     }
     
     
-    let titles = ["Welcome to Connect!", "What's your name?", "How old are you?", "What gender do you identify as?", "Perfect! Your profile is all set."]
+    let titles = ["Welcome to Connect!", "What's your name?", "Perfect! Your profile is all set."]
     private func configure() {
         // sets up scrollview
         scrollView.frame = holderView.bounds
         holderView.addSubview(scrollView)
         
-        for x in 0..<5 {
+        for x in 0..<3 {
             let pageView = UIView(frame: CGRect(x: CGFloat(x) * (holderView.frame.size.width), y: 0, width: holderView.frame.size.width, height: holderView.frame.size.height))
             scrollView.addSubview(pageView)
             
@@ -76,23 +76,23 @@ class WelcomeViewController: UIViewController {
                 pageView.addSubview(nameTextField)
             }
             
-            //age
-            if x == 2 {
-                let agePicker = UIPickerView(frame: CGRect(x: 10, y: pageView.frame.size.height - 450, width: 200, height: 30))
-                pageView.addSubview(agePicker)
-                
-            }
-            
-            //gender
-            if x == 3 {
-                label.numberOfLines = 3
-                label.lineBreakMode = .byWordWrapping
-                let genderPicker = UIPickerView(frame: CGRect(x: 10, y: pageView.frame.size.height - 450, width: 200, height: 30))
-                pageView.addSubview(genderPicker)
-            }
+//            //age --> currenly unneeded for MVP
+//            if x == 2 {
+//                let agePicker = UIPickerView(frame: CGRect(x: 10, y: pageView.frame.size.height - 450, width: 200, height: 30))
+//                pageView.addSubview(agePicker)
+//
+//            }
+//
+//            //gender --> currenly unneeded for MVP
+//            if x == 3 {
+//                label.numberOfLines = 3
+//                label.lineBreakMode = .byWordWrapping
+//                let genderPicker = UIPickerView(frame: CGRect(x: 10, y: pageView.frame.size.height - 450, width: 200, height: 30))
+//                pageView.addSubview(genderPicker)
+//            }
             
             // changes next button to 'get started'
-            if x == 4{
+            if x == 2{
                 button.setTitle("Get Started", for: .normal)
             }
             
@@ -146,7 +146,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func didTapButton(_ button: UIButton) {
-        guard button.tag < 4 else {
+        guard button.tag < 3 else {
             //dismiss welcome page
             Core.shared.setIsNotNewUser()
             dismiss(animated: true, completion: nil)
